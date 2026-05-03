@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand: #2DD4BF;
+  --color-bg-deep: #0A0A0B;
+}
+
+@layer base {
+  body {
+    @apply bg-[#0A0A0B] text-[#E1E1E1] antialiased selection:bg-brand/30 selection:text-white;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .chat-container {
+    @apply flex-1 overflow-y-auto px-4 md:px-0 py-8 max-w-3xl mx-auto w-full flex flex-col gap-8;
+  }
+
+  .chat-message {
+    @apply flex gap-4 md:gap-6 px-4 py-8 w-full max-w-4xl mx-auto transition-colors duration-200;
+  }
+
+  .user-message {
+    @apply bg-transparent;
+  }
+
+  .ai-message {
+    @apply bg-[#2f2f2f]/30 rounded-3xl;
+  }
+
+  .input-container {
+    @apply pb-10 px-4 md:px-0 max-w-3xl mx-auto w-full;
+  }
+
+  .input-box {
+    @apply relative flex items-center bg-[#2f2f2f] border border-[#3e3e3e] rounded-2xl p-3 focus-within:border-[#5e5e5e] transition-all shadow-xl;
+  }
+
+  .btn-send {
+    @apply absolute right-2 p-2 bg-white text-black rounded-xl disabled:opacity-30 disabled:bg-[#676767] disabled:text-[#212121] transition-all;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-[#ececec] hover:bg-[#2f2f2f] transition-colors cursor-pointer;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
