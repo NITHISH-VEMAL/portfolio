@@ -97,7 +97,367 @@
       </div>
     </main>
 
-    <script src="/main.js"></script>
+    <script>
+const PORTFOLIO_DATA = {
+  about: {
+    title: "About Nithish Siddharthan V",
+    role_split: "Senior Web Developer",
+    content: "Experienced full-stack developer with over 5 years of expertise in architecting mission-critical endpoint security and high-stakes banking solutions. I am primarily a Frontend-focused Web Developer specializing in Ember.js and React.js. I thrive on translating complex customer feedback into high-performance web experiences, ensuring pixel-perfect delivery and optimized system efficiency across enterprise-scale platforms.",
+  },
+  experience: [
+    {
+      company: "Zoho Corporation",
+      role: "Full Stack Developer",
+      period: "October 2021 - Present",
+      desc: "Architected and optimized mission-critical endpoint management solutions using Ember.js and React.js. I delivered 15+ customer-driven features and built interactive security dashboards that handle massive real-time data streams. By implementing advanced lazy loading and code flow optimizations, I reduced initial data load times by 30%. Additionally, I built a custom Python tool for automated document comparison, reducing manual effort by 70%."
+    },
+    {
+      company: "Virtusa Corporation",
+      role: "Software Engineer",
+      period: "Feb 2021 - September 2021",
+      desc: "Developed Spring Boot-based tools to streamline payment dispute resolution in high-stakes global banking environments. I focused on building intuitive frontend portals for transaction validation and created interactive dashboards using Python to visualize complex payment-related telemetry."
+    },
+    {
+      company: "Zoho Corporation",
+      role: "Project Trainee",
+      period: "Jan 2020 - Feb 2020",
+      desc: "Engineered a cross-platform system process monitor using C++ and Java. I utilized the Windows API and JNI to facilitate high-efficiency data transfer between the low-level system backend and the Java-based user interface, providing real-time hardware performance metrics."
+    }
+  ],
+  skills: [
+    { category: "Web Development", items: ["Ember.js", "JavaScript", "HTML", "CSS", "React.js"] },
+    { category: "Back-End", items: ["Spring Boot", "WebServlets", "RESTful APIs"] },
+    { category: "Databases", items: ["SQL"] },
+    { category: "Software Development", items: ["GIT", "Automation Testing", "Debugging"] },
+    { category: "Product Development & Management", items: ["Product Development", "Product Management", "Quality Assurance"] },
+    { category: "Additional Skills", items: ["Data Visualization", "Research Analyst"] }
+  ],
+  certifications: [
+    { name: "IBM Data Science Professional Certificate", issuer: "Coursera", details: "Deep dive into data analysis, machine learning, and data science methodologies." },
+    { name: "Python and Django Web Development", issuer: "Udemy", details: "Practical skills in building and deploying robust web applications." },
+    { name: "Business English Certificate (Vantage)", issuer: "Cambridge", details: "Advanced proficiency in global business English communication." },
+    { name: "Introduction to C Programming", issuer: "NPTEL", details: "Elite-level certification in foundational systems programming." }
+  ],
+  projects: [
+    { 
+      name: "\"Join Hands\" - Connecting Professionals and Customers (Academic)", 
+      desc: "Developed a web platform connecting customers with professional workers for task-based hiring, featuring user registration, profile management, and direct hiring functionalities.", 
+      tech: "HTML, CSS, JSP, SQL, Spring Boot",
+      highlights: "Published in the IJITEE Journal."
+    },
+    { 
+      name: "Picto", 
+      desc: "AI-developed Android app to display photos with ML Kit usage for real-time text detection and QR Scanner detection.", 
+      tech: "Android, ML Kit, Kotlin",
+      highlights: "Purely developed using AI."
+    },
+    { 
+      name: "Ember Project Utility (VS Code Extension)", 
+      desc: "AI-developed extension for Ember.js projects featuring onclick usage tracking and seamless multi-repo linkage provision.", 
+      tech: "VS Code API, TypeScript",
+      highlights: "Purely developed using AI."
+    },
+    { 
+      name: "QA Capture & Logger (Browser Extension)", 
+      desc: "AI-developed tool to capture UI screen recordings, logs, and network calls, packaging them as ZIPs for QA teams.", 
+      tech: "JavaScript, WebExtensions API",
+      highlights: "Purely developed using AI."
+    }
+  ],
+  education: "Bachelor of Technology (B.Tech) in Information Technology - R.M.D Engineering College, Kavarapettai (June 2016 - May 2020)."
+};
+
+const COMMANDS = [
+  { id: 'biography', label: "About Nithish", icon: 'user', query: "Tell me about Nithish's background" },
+  { id: 'experience', label: "Nithish's Experience", icon: 'briefcase', query: "Show me work history and roles" },
+  { id: 'stack', label: "Technical Toolbox", icon: 'layers', query: "What are the core technical skills?" },
+  { id: 'projects', label: "Featured Projects", icon: 'globe', query: "Display major portfolio projects" },
+  { id: 'certifications', label: "Professional Credentials", icon: 'award', query: "Show certifications" },
+  { id: 'contact', label: "Contact Information", icon: 'mail', query: "How to hire or contact Nithish?" },
+];
+
+const icons = {
+  user: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+  briefcase: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+  layers: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polygon points="2 17 12 22 22 17"/><polygon points="2 12 12 17 22 12"/></svg>`,
+  globe: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+  award: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>`,
+  mail: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`,
+  code: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+  external: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>`,
+  linkedin: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>`,
+  chevronDown: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>`
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  const chatContainer = document.getElementById('chat-container');
+  const chatScrollArea = document.getElementById('chat-scroll-area');
+  const commandMenu = document.getElementById('command-menu');
+  const commandMenuGrid = document.getElementById('command-menu-grid');
+  const commandTrigger = document.getElementById('command-trigger');
+  const chevronIcon = document.getElementById('chevron-icon');
+
+  let messages = [];
+  let isCommandMenuOpen = false;
+
+  function addMessage(role, content) {
+    const msgObj = { id: Date.now(), role, content };
+    messages.push(msgObj);
+    renderMessage(msgObj);
+    scrollToBottom();
+  }
+
+  function renderMessage(msg) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `flex gap-4 p-6 rounded-3xl transition-all animate-in slide-in-from-bottom-2 duration-300 ${msg.role === 'user' ? 'bg-white/5 ml-8 border border-white/5' : 'ai-message'}`;
+    
+    const iconHtml = msg.role === 'user' 
+      ? `<div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-[10px]">U</div>`
+      : `<div class="w-8 h-8 rounded-full bg-[#2dd4bf] flex items-center justify-center text-black">${icons.code}</div>`;
+
+    messageDiv.innerHTML = `
+      <div class="flex-shrink-0">${iconHtml}</div>
+      <div class="flex-1 space-y-3">
+        <div class="text-[10px] font-bold text-[#676767] uppercase tracking-widest">
+          ${msg.role === 'user' ? 'Human' : 'Portfolio AI Agent'}
+        </div>
+        <div class="text-[14px] leading-relaxed text-[#d1d1d1]">
+          ${typeof msg.content === 'string' ? msg.content : ''}
+        </div>
+      </div>
+    `;
+    
+    if (typeof msg.content !== 'string' && msg.content instanceof HTMLElement) {
+      const contentDiv = messageDiv.querySelector('.text-\\[14px\\]');
+      contentDiv.appendChild(msg.content);
+    } else if (typeof msg.content === 'string') {
+        const contentDiv = messageDiv.querySelector('.text-\\[14px\\]');
+        contentDiv.innerHTML = msg.content;
+    }
+
+    chatContainer.appendChild(messageDiv);
+  }
+
+  function showThinking() {
+    const thinkingDiv = document.createElement('div');
+    thinkingDiv.id = 'thinking-indicator';
+    thinkingDiv.className = 'flex gap-4 p-6 rounded-3xl ai-message animate-pulse';
+    thinkingDiv.innerHTML = `
+      <div class="flex-shrink-0">
+        <div class="w-8 h-8 rounded-full bg-[#2dd4bf] flex items-center justify-center text-black">${icons.code}</div>
+      </div>
+      <div class="flex-1 space-y-3">
+        <div class="text-[10px] font-bold text-[#676767] uppercase tracking-widest">Portfolio AI Agent</div>
+        <div class="flex items-center gap-2 text-[#676767] italic text-[14px]">
+          <span class="animate-spin text-[#2dd4bf] block">${icons.code}</span>
+          Fetching portfolio data...
+        </div>
+      </div>
+    `;
+    chatContainer.appendChild(thinkingDiv);
+    scrollToBottom();
+  }
+
+  function removeThinking() {
+    const indicator = document.getElementById('thinking-indicator');
+    if (indicator) indicator.remove();
+  }
+
+  function scrollToBottom() {
+    if (chatScrollArea) {
+      chatScrollArea.scrollTo({ top: chatScrollArea.scrollHeight, behavior: 'smooth' });
+    }
+  }
+
+  function toggleCommandMenu() {
+    isCommandMenuOpen = !isCommandMenuOpen;
+    commandMenu.classList.toggle('hidden', !isCommandMenuOpen);
+    chevronIcon.classList.toggle('rotate-180', isCommandMenuOpen);
+  }
+
+  function handleCommand(query) {
+    if (isCommandMenuOpen) toggleCommandMenu();
+    addMessage('user', query);
+    showThinking();
+
+    setTimeout(() => {
+      removeThinking();
+      let responseElement = document.createElement('div');
+      responseElement.className = 'space-y-6';
+      const t = query.toLowerCase().trim();
+
+      if (t.includes('about') || t.includes('who') || t.includes('background') || t.includes('biography')) {
+        responseElement.innerHTML = `
+          <div class="p-4 bg-[#2dd4bf]/5 border-l-4 border-[#2dd4bf] rounded-r-2xl">
+             <p class="text-[#2dd4bf] font-bold text-sm mb-1">${PORTFOLIO_DATA.about.role_split}</p>
+             <p class="text-sm text-[#ececec]">${PORTFOLIO_DATA.about.content}</p>
+          </div>
+        `;
+      } else if (t.includes('experience') || t.includes('work') || t.includes('history')) {
+        let expHtml = `<p class="text-sm text-[#888]">Chronicle of professional engagements at Zoho and Virtusa:</p><div class="space-y-8 mt-4">`;
+        PORTFOLIO_DATA.experience.forEach(exp => {
+          expHtml += `
+            <div class="relative pl-8 border-l border-white/10 group">
+              <div class="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-[#2dd4bf] shadow-[0_0_10px_rgba(45,212,191,0.5)] transition-transform group-hover:scale-125"></div>
+              <div class="mb-1 flex flex-wrap justify-between items-center gap-2">
+                <h3 class="text-[#2dd4bf] font-bold">${exp.role}</h3>
+                <span class="text-[10px] py-1 px-2 bg-white/5 rounded border border-white/10 text-white/40 uppercase tracking-widest">${exp.period}</span>
+              </div>
+              <p class="text-xs font-bold text-white mb-3">${exp.company}</p>
+              <p class="text-sm text-[#888] leading-relaxed">${exp.desc}</p>
+            </div>
+          `;
+        });
+        expHtml += `</div>`;
+        responseElement.innerHTML = expHtml;
+      } else if (t.includes('skill') || t.includes('stack') || t.includes('tech') || t.includes('tool')) {
+        let skillsHtml = `<p class="text-sm text-[#888]">Technical competence matrix categorized by layer:</p><div class="space-y-8 mt-4">`;
+        PORTFOLIO_DATA.skills.forEach(cat => {
+          skillsHtml += `
+            <div class="space-y-3">
+              <h4 class="text-[10px] font-bold text-white opacity-40 uppercase tracking-[0.2em]">${cat.category}</h4>
+              <div class="flex flex-wrap gap-2">
+                ${cat.items.map(item => `<span class="px-4 py-2 bg-[#2f2f2f] border border-[#3e3e3e] rounded-xl text-xs text-[#ececec] hover:border-[#2dd4bf] transition-colors">${item}</span>`).join('')}
+              </div>
+            </div>
+          `;
+        });
+        skillsHtml += `</div>`;
+        responseElement.innerHTML = skillsHtml;
+      } else if (t.includes('project') || t.includes('build')) {
+        let projectsHtml = `<p class="text-sm text-[#888]">Highlighting major full-stack and specialized systems:</p><div class="grid gap-4 mt-4">`;
+        PORTFOLIO_DATA.projects.forEach(p => {
+          projectsHtml += `
+            <div class="p-6 bg-[#2f2f2f] border border-[#3e3e3e] rounded-3xl hover:border-[#2dd4bf]/40 transition-all">
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="font-bold text-white text-lg">${p.name}</h4>
+                <span class="text-[#676767]">${icons.external}</span>
+              </div>
+              <p class="text-sm text-[#888] mb-4 leading-relaxed">${p.desc}</p>
+              <div class="flex items-center justify-between">
+                <div class="px-3 py-1 bg-[#2dd4bf]/10 text-[#2dd4bf] rounded-full text-[10px] font-mono uppercase border border-[#2dd4bf]/20">
+                  ${p.tech}
+                </div>
+                <span class="text-[10px] text-white/30 italic">${p.highlights}</span>
+              </div>
+            </div>
+          `;
+        });
+        projectsHtml += `</div>`;
+        responseElement.innerHTML = projectsHtml;
+      } else if (t.includes('cert') || t.includes('credential') || t.includes('educat')) {
+        let certHtml = `
+          <div class="space-y-6">
+            <div class="space-y-4">
+              <p class="text-sm text-[#888]">Academic Background:</p>
+              <div class="p-5 bg-[#2dd4bf]/5 border border-[#2dd4bf]/20 rounded-2xl">
+                <h4 class="font-bold text-white text-sm">Bachelor of Technology (B.Tech)</h4>
+                <p class="text-xs text-[#2dd4bf] mb-1">Information Technology</p>
+                <p class="text-xs text-[#888]">R.M.D Engineering College, Kavarapettai</p>
+                <p class="text-[10px] text-[#555] uppercase mt-2">2016 — 2020</p>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <p class="text-sm text-[#888]">Professional Credentials & Certifications:</p>
+              <div class="grid gap-4">
+                ${PORTFOLIO_DATA.certifications.map(cert => `
+                  <div class="p-5 bg-[#2f2f2f] border border-[#3e3e3e] rounded-2xl border-l-4 border-l-[#2dd4bf]">
+                    <div class="flex justify-between items-start mb-2">
+                      <h4 class="font-bold text-white text-sm">${cert.name}</h4>
+                      <span class="text-[10px] text-[#2dd4bf] bg-[#2dd4bf]/10 px-2 py-0.5 rounded border border-[#2dd4bf]/20 uppercase">${cert.issuer}</span>
+                    </div>
+                    <p class="text-xs text-[#888] leading-relaxed">${cert.details}</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+        responseElement.innerHTML = certHtml;
+      } else if (t.includes('contact') || t.includes('hire') || t.includes('email')) {
+        responseElement.innerHTML = `
+          <div class="space-y-6">
+            <p class="text-sm text-[#888]">Secure communication channels are open:</p>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <a href="mailto:nithish.vemal@gmail.com" class="flex items-center gap-4 p-4 bg-[#2f2f2f] border border-[#3e3e3e] rounded-2xl hover:bg-[#353535] transition-all">
+                <div class="p-3 bg-[#2dd4bf]/10 text-[#2dd4bf] rounded-xl">${icons.mail}</div>
+                <div>
+                  <p class="text-[10px] text-[#676767] uppercase">Email</p>
+                  <p class="text-sm font-bold text-white">nithish.vemal@gmail.com</p>
+                </div>
+              </a>
+              <a href="https://in.linkedin.com/in/nithishsiddharthanvemal" target="_blank" class="flex items-center gap-4 p-4 bg-[#2f2f2f] border border-[#3e3e3e] rounded-2xl hover:bg-[#353535] transition-all">
+                <div class="p-3 bg-blue-500/10 text-blue-500 rounded-xl">${icons.linkedin}</div>
+                <div>
+                  <p class="text-[10px] text-[#676767] uppercase">LinkedIn</p>
+                  <p class="text-sm font-bold text-white">Nithish Siddharthan</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        `;
+      } else {
+        responseElement.innerHTML = `<p>Input not recognized. Please select a portfolio command.</p>`;
+      }
+      
+      addMessage('assistant', responseElement);
+    }, 1200);
+  }
+
+  // Initialization
+  function init() {
+    const welcomeElement = document.createElement('div');
+    welcomeElement.className = 'space-y-6';
+    welcomeElement.innerHTML = `
+      <div class="inline-block p-2 bg-[#2dd4bf]/10 border border-[#2dd4bf]/20 rounded-lg mb-4">
+        <span class="text-[10px] font-bold text-[#2dd4bf] uppercase tracking-widest">Active Portfolio Node</span>
+      </div>
+      <h1 class="text-2xl font-bold text-white leading-tight">Welcome to the Portfolio of <span class="text-[#2dd4bf]">Nithish Siddharthan</span>.</h1>
+      <p class="text-[#ececec] opacity-80 leading-relaxed text-[15px]">
+        I am a **Senior Web Developer** with a major focus on crafting high-performance Frontend architectures.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4" id="welcome-buttons"></div>
+    `;
+    
+    messages.push({ id: Date.now(), role: 'assistant', content: welcomeElement });
+    renderMessage(messages[0]);
+
+    const welcomeButtons = document.getElementById('welcome-buttons');
+    COMMANDS.forEach(cmd => {
+      const btn = document.createElement('button');
+      btn.className = 'flex items-center gap-3 p-4 bg-[#2f2f2f] border border-[#3e3e3e] rounded-2xl hover:border-[#2dd4bf]/40 hover:bg-[#353535] transition-all text-left group';
+      btn.innerHTML = `
+        <div class="p-2 bg-[#2dd4bf]/10 rounded-lg text-[#2dd4bf] group-hover:scale-110 transition-transform">${icons[cmd.icon]}</div>
+        <span class="text-sm font-semibold text-[#ececec]">${cmd.label}</span>
+      `;
+      btn.onclick = () => handleCommand(cmd.query);
+      welcomeButtons.appendChild(btn);
+    });
+
+    COMMANDS.forEach(cmd => {
+      const btn = document.createElement('button');
+      const iconKey = cmd.icon;
+      btn.className = 'flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-[#353535] transition-colors text-left group w-full';
+      btn.innerHTML = `
+        <div class="text-[#2dd4bf] group-hover:scale-110 transition-transform">${icons[iconKey]}</div>
+        <span class="text-sm text-[#ececec] font-medium">${cmd.label}</span>
+      `;
+      btn.onclick = () => handleCommand(cmd.query);
+      commandMenuGrid.appendChild(btn);
+    });
+  }
+
+  commandTrigger.onclick = toggleCommandMenu;
+
+  document.addEventListener('click', (e) => {
+    if (!commandTrigger.contains(e.target) && !commandMenu.contains(e.target) && isCommandMenuOpen) {
+      toggleCommandMenu();
+    }
+  });
+
+  init();
+});
+    </script>
   </body>
 </html>
 
