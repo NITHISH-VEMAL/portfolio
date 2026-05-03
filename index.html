@@ -1,13 +1,103 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nithish Siddharthan | Full Stack Developer</title>
+    <title>Nithish Portfolio GPT</title>
+    <!-- Use Tailwind CDN for plain HTML development -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      window.tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#2dd4bf',
+            },
+            animation: {
+              'in': 'in 0.3s ease-out',
+            },
+            keyframes: {
+              in: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #212121;
+        color: #ececec;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      }
+      .ai-message {
+        background: transparent;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .chat-scroll-area {
+        scroll-behavior: smooth;
+      }
+    </style>
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/main.tsx"></script>
+  <body class="flex h-screen w-screen overflow-hidden bg-[#212121]">
+    <main class="flex-1 flex flex-col bg-[#212121] relative h-full">
+      <!-- Header -->
+      <header class="h-14 flex items-center px-6 border-b border-white/5 bg-[#212121]/50 backdrop-blur-sm z-50">
+        <div class="flex items-center gap-2 text-sm font-semibold text-[#ececec]">
+          <div class="w-2 h-2 bg-brand rounded-full animate-pulse"></div>
+          Nithish Portfolio GPT v4.5
+        </div>
+      </header>
+
+      <!-- Chat Area -->
+      <div id="chat-scroll-area" class="flex-1 overflow-y-auto scrollbar-hide chat-scroll-area">
+        <div id="chat-container" class="max-w-3xl mx-auto w-full py-12 px-4 space-y-4">
+          <!-- Messages will be injected here -->
+        </div>
+      </div>
+
+      <!-- Input Section -->
+      <div class="w-full max-w-3xl mx-auto px-4 pb-10">
+        <div class="relative">
+          <!-- Command Dropdown -->
+          <div id="command-menu" class="hidden absolute bottom-full left-0 mb-4 w-full bg-[#2f2f2f] border border-[#3e3e3e] rounded-3xl shadow-2xl z-[70] overflow-hidden animate-in">
+            <div class="p-2 border-b border-white/5 bg-[#252525]">
+              <p class="text-[10px] font-bold text-[#676767] px-3 py-1 uppercase tracking-widest">Available Commands</p>
+            </div>
+            <div id="command-menu-grid" class="p-2 grid grid-cols-1 sm:grid-cols-2 gap-1 bg-[#252525]">
+              <!-- Commands dynamically added -->
+            </div>
+          </div>
+
+          <!-- Main Command Trigger -->
+          <button id="command-trigger" class="w-full h-14 bg-[#2f2f2f] border border-[#3e3e3e] rounded-3xl flex items-center justify-between px-6 hover:border-[#525252] transition-all shadow-xl group">
+            <div class="flex items-center gap-3 text-[#676767] group-hover:text-[#888] transition-colors">
+              <div class="p-1 bg-[#3e3e3e] rounded font-mono text-[10px] border border-white/5">/</div>
+              <span class="text-[15px]">Select a command to browse portfolio...</span>
+            </div>
+            <div id="chevron-icon" class="transition-transform duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+          </button>
+        </div>
+        
+        <div class="flex justify-center gap-4 mt-4 text-[#676767] text-[11px]">
+          <p>Nithish Portfolio GPT v4.5</p>
+          <span class="text-[#3e3e3e]">•</span>
+          <p>Command Driven Experience</p>
+        </div>
+      </div>
+    </main>
+
+    <script src="/main.js"></script>
   </body>
 </html>
 
